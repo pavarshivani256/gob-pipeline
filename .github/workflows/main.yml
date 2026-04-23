@@ -1,0 +1,42 @@
+name: ETL Pipeline
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+
+  job1:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Job1 running"
+
+  job2:
+    runs-on: ubuntu-latest
+    needs: job1
+    steps:
+      - run: echo "Job2 running"
+
+  job3:
+    runs-on: ubuntu-latest
+    needs: job1
+    steps:
+      - run: echo "Job3 running"
+
+  job4:
+    runs-on: ubuntu-latest
+    needs: job2
+    steps:
+      - run: echo "Job4 running"
+
+  job5:
+    runs-on: ubuntu-latest
+    needs: job3
+    steps:
+      - run: echo "Job5 running"
+
+  job6:
+    runs-on: ubuntu-latest
+    needs: [job4, job5]
+    steps:
+      - run: echo "Job6 running"
